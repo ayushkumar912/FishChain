@@ -51,9 +51,20 @@ contract FisheriesManagement {
         return batches[batchId].sustainable;
     }
 
+    function getTransferIds(uint256 batchId) external view returns (uint256[] memory) {
+    require(batches[batchId].id == batchId, "Batch does not exist");
+    return batches[batchId].transferIds;
+    }
+
+
     function addTransferToBatch(uint256 batchId, uint256 transferId) external {
         require(batches[batchId].id == batchId, "Batch does not exist");
         batches[batchId].transferIds.push(transferId);
+    }
+
+    function updateweight(uint256 batchId, uint256 weight) external{
+          require(batches[batchId].id == batchId, "Batch does not exist");
+          batches[batchId].weight -= weight;
     }
 
 }

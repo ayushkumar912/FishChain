@@ -28,7 +28,7 @@ contract FishTransfer {
 
 
         transfers[nextTransferId] = Transfer(nextTransferId, batchId, stage, block.timestamp);
-        // fisheriesManagement.addTransferToBatch(batchId, nextTransferId);
+        fisheriesManagement.addTransferToBatch(batchId, nextTransferId);
         emit TransferRecorded(nextTransferId, batchId, stage, block.timestamp);
         nextTransferId++;
     }

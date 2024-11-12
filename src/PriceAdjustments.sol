@@ -3,37 +3,43 @@ pragma solidity ^0.8.0;
 
 import "./FishMarketplace.sol";
 
-contract PricingAdjustment is FishMarketplace {
+contract PricingAdjustment {
+
     mapping(uint256 => uint256) public sustainabilityMultiplier;
     mapping(uint256 => uint256) public freshnessMultiplier;
 
     event PriceAdjusted(uint256 batchId, uint256 newPricePerKg);
     event DebugPriceChange(uint256 listingId, uint256 initialPrice, uint256 adjustedPrice);
 
+    FishMarketplace fishMarketplace;
 
-    constructor(address fisheriesManagementAddress) 
-        FishMarketplace(fisheriesManagementAddress) // Call the base constructor
-    {}
+    constructor(address fishMarketplaceAddress) {
+        fishMarketplace = FishMarketplace(fishMarketplaceAddress);
+    }
 
     function adjustPrice(uint256 listingId, uint256 sustainabilityFactor, uint256 freshnessFactor) public {
-    Listing storage listing = listings[listingId];
-    require(listing.listingId == listingId, "Listing does not exist");
+        (
+            uint256 id,,,,,
+            uint256 pricePerKg,
+        ) = fishMarketplace.getListingDetails(listingId);
 
-    uint256 initialPrice = listing.pricePerKg;
-    uint256 adjustedPrice = initialPrice;
+        require(id == listingId, "Listing does not exist");
 
-    // Apply sustainability and freshness multipliers
-    if (sustainabilityFactor > 0) {
-        adjustedPrice = adjustedPrice * sustainabilityFactor / 100;
+        uint256 initialPrice = pricePerKg;
+        uint256 adjustedPrice = initialPrice;
+
+        // Apply sustainability and freshness multipliers
+        if (sustainabilityFactor > 0) {
+            adjustedPrice = adjustedPrice * sustainabilityFactor / 100;
+        }
+        if (freshnessFactor > 0) {
+            adjustedPrice = adjustedPrice * freshnessFactor / 100;
+        }
+
+        // Update price in marketplace
+        fishMarketplace.adjustListingPrice(listingId, adjustedPrice);
+
+        emit DebugPriceChange(listingId, initialPrice, adjustedPrice);
+        emit PriceAdjusted(listingId, adjustedPrice);
     }
-    if (freshnessFactor > 0) {
-        adjustedPrice = adjustedPrice * freshnessFactor / 100;
-    }
-
-    listing.pricePerKg = adjustedPrice;
-
-    emit DebugPriceChange(listingId, initialPrice, adjustedPrice);
-    emit PriceAdjusted(listingId, adjustedPrice);
-}
-
 }
