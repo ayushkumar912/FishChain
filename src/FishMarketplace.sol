@@ -55,11 +55,10 @@ contract FishMarketplace {
         require(msg.value >= totalPrice, "Insufficient funds");
 
         listing.availableWeight -= weight;
-
         if (listing.availableWeight == 0) {
             listing.isSoldOut = true;
         }
-
+        payable(listing.fisher).transfer(totalPrice);
         emit FishBought(listingId, msg.sender, weight, totalPrice);
     }
 
