@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fisheries Management</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <h1>Fisheries Management Dashboard</h1>
+
+  <div id="status">Loading...</div>
+
+  <!-- Price Adjustment Form -->
+  <h2>Adjust Price</h2>
+  <form id="priceForm">
+    <label for="listingId">Listing ID:</label>
+    <input type="number" id="listingId" required><br>
+    <label for="batchId">Batch ID:</label>
+    <input type="number" id="batchId" required><br>
+    <button type="submit">Adjust Price</button>
+  </form>
+
+  <!-- Fish Transfer Form -->
+  <h2>Transfer Fish</h2>
+  <form id="transferForm">
+    <label for="toAddress">To Address:</label>
+    <input type="text" id="toAddress" required><br>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" required><br>
+    <button type="submit">Transfer Fish</button>
+  </form>
+
+  <!-- Fish Registration Form -->
+  <h2>Register Fish Batch</h2>
+  <form id="registerFishForm">
+    <label for="batchIdReg">Batch ID:</label>
+    <input type="number" id="batchIdReg" required><br>
+    <label for="fishType">Fish Type:</label>
+    <input type="text" id="fishType" required><br>
+    <button type="submit">Register Fish</button>
+  </form>
+
+  <!-- Inspector Authorization Form -->
+  <h2>Authorize Inspector</h2>
+  <form id="authorizeInspectorForm">
+    <label for="inspectorAddress">Inspector Address:</label>
+    <input type="text" id="inspectorAddress" required><br>
+    <button type="submit">Authorize</button>
+  </form>
+
+  <!-- Price Registration Form -->
+  <h2>Register Price</h2>
+  <form id="registerPriceForm">
+    <label for="listingIdPrice">Listing ID:</label>
+    <input type="number" id="listingIdPrice" required><br>
+    <label for="price">Price:</label>
+    <input type="number" id="price" required><br>
+    <button type="submit">Register Price</button>
+  </form>
+
+  <script src="app.js"></script>
+</body>
+</html>

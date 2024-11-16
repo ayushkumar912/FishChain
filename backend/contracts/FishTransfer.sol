@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.27;
 
 import {FisheriesManagement} from "./FisheriesManagement.sol";
 
@@ -19,15 +19,22 @@ contract FishTransfer {
         fisheriesManagement = FisheriesManagement(fisheriesManagementAddress);
     }
 
-
-    event TransferRecorded(uint256 transferId, uint256 batchId, string stage, uint256 timestamp);
+    event TransferRecorded(
+        uint256 transferId,
+        uint256 batchId,
+        string stage,
+        uint256 timestamp
+    );
 
     function recordTransfer(uint256 batchId, string memory stage) public {
-
         // require(fisheriesManagement.batches(batchId).id == batchId, "Batch does not exist");
 
-
-        transfers[nextTransferId] = Transfer(nextTransferId, batchId, stage, block.timestamp);
+        transfers[nextTransferId] = Transfer(
+            nextTransferId,
+            batchId,
+            stage,
+            block.timestamp
+        );
         fisheriesManagement.addTransferToBatch(batchId, nextTransferId);
         emit TransferRecorded(nextTransferId, batchId, stage, block.timestamp);
         nextTransferId++;

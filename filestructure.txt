@@ -1,0 +1,22 @@
+project-root/
+├── backend/
+│   ├── server.js                  # Express server for handling API requests and Ethereum interaction
+│   ├── eth-interaction.js         # Smart contract interaction logic for backend using ethers.js
+│   ├── .env                       # Environment variables for the backend
+│   └── node_modules/              # Node modules
+├── frontend/
+│   ├── index.html                 # Frontend form to interact with smart contracts
+│   ├── eth-interaction.js         # Frontend JavaScript for making HTTP requests to the backend
+│   ├── assets/                    # Static assets for frontend
+│   └── css/
+│       └── style.css              # Styles for the frontend (optional)
+├── contracts/
+│   ├── FisheriesManagement.sol    # Smart contract file
+│   ├── artifacts/                 # Hardhat build artifacts
+│   │   └── contracts/
+│   │       └── FisheriesManagement.sol/
+│   │           ├── FisheriesManagement.json  # ABI and Bytecode
+│   │           └── ...
+├── hardhat.config.js              # Hardhat configuration for deployment and network setup
+├── .gitignore                     # Git ignore
+└── README.md                      # Documentation

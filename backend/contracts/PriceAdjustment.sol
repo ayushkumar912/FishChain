@@ -1,15 +1,18 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.27;
 
 import "./FishMarketplace.sol";
 
-contract PricingAdjustment {
-
+contract PriceAdjustment {
     mapping(uint256 => uint256) public sustainabilityMultiplier;
     mapping(uint256 => uint256) public freshnessMultiplier;
 
     event PriceAdjusted(uint256 batchId, uint256 newPricePerKg);
-    event DebugPriceChange(uint256 listingId, uint256 initialPrice, uint256 adjustedPrice);
+    event DebugPriceChange(
+        uint256 listingId,
+        uint256 initialPrice,
+        uint256 adjustedPrice
+    );
 
     FishMarketplace fishMarketplace;
 
@@ -17,11 +20,13 @@ contract PricingAdjustment {
         fishMarketplace = FishMarketplace(fishMarketplaceAddress);
     }
 
-    function adjustPrice(uint256 listingId, uint256 sustainabilityFactor, uint256 freshnessFactor) public {
-        (
-            uint256 id,,,,,
-            uint256 pricePerKg,
-        ) = fishMarketplace.getListingDetails(listingId);
+    function adjustPrice(
+        uint256 listingId,
+        uint256 sustainabilityFactor,
+        uint256 freshnessFactor
+    ) public {
+        (uint256 id, , , , , uint256 pricePerKg, ) = fishMarketplace
+            .getListingDetails(listingId);
 
         require(id == listingId, "Listing does not exist");
 
@@ -30,10 +35,10 @@ contract PricingAdjustment {
 
         // Apply sustainability and freshness multipliers
         if (sustainabilityFactor > 0) {
-            adjustedPrice = adjustedPrice * sustainabilityFactor / 100;
+            adjustedPrice = (adjustedPrice * sustainabilityFactor) / 100;
         }
         if (freshnessFactor > 0) {
-            adjustedPrice = adjustedPrice * freshnessFactor / 100;
+            adjustedPrice = (adjustedPrice * freshnessFactor) / 100;
         }
 
         // Update price in marketplace
