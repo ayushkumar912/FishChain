@@ -30,3 +30,19 @@ node_modules
 
 # Hardhat Ignition default folder for deployments against a local node
 ignition/deployments/chain-31337
+
+
+backend/artifacts/contracts/FishMarketplace.sol/FishMarketplace.dbg.json
+backend/artifacts/contracts/FishMarketplace.sol/FishMarketplace.json
+backend/artifacts/contracts/FishTransfer.sol/FishTransfer.dbg.json
+backend/artifacts/contracts/FishTransfer.sol/FishTransfer.json
+backend/artifacts/contracts/FisheriesManagement.sol/FisheriesManagement.dbg.json
+backend/artifacts/contracts/FisheriesManagement.sol/FisheriesManagement.json
+backend/artifacts/contracts/InspectorAuthorization.sol/InspectorAuthorization.dbg.json
+backend/artifacts/contracts/InspectorAuthorization.sol/InspectorAuthorization.json
+backend/artifacts/contracts/PriceAdjustment.sol/PriceAdjustment.dbg.json
+backend/artifacts/contracts/PriceAdjustment.sol/PriceAdjustment.json
+backend/hardhat.config.js
+backend/package-lock.json
+backend/package.json
+frontend/index.html
