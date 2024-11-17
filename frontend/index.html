@@ -3,62 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fisheries Management</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.umd.min.js"></script>
+  <title>Fish Marketplace</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Fisheries Management Dashboard</h1>
+  <div class="container">
+    <h1>Fish Marketplace</h1>
+    
+    <!-- Log Catch Form -->
+    <section>
+      <h2>Log Catch</h2>
+      <form id="logCatchForm">
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" required>
+        <label for="pricePerKg">Price per KG:</label>
+        <input type="number" id="pricePerKg" required>
+        <button type="submit">Log Catch</button>
+      </form>
+      <div id="logCatchMessage"></div>
+    </section>
 
-  <div id="status">Loading...</div>
+    <!-- Update Weight Form -->
+    <section>
+      <h2>Update Weight</h2>
+      <form id="updateWeightForm">
+        <label for="batchId">Batch ID:</label>
+        <input type="number" id="updateBatchId" required>
+        <label for="newWeight">New Weight:</label>
+        <input type="number" id="newWeight" required>
+        <button type="submit">Update Weight</button>
+      </form>
+      <div id="updateWeightMessage"></div>
+    </section>
 
-  <!-- Price Adjustment Form -->
-  <h2>Adjust Price</h2>
-  <form id="priceForm">
-    <label for="listingId">Listing ID:</label>
-    <input type="number" id="listingId" required><br>
-    <label for="batchId">Batch ID:</label>
-    <input type="number" id="batchId" required><br>
-    <button type="submit">Adjust Price</button>
-  </form>
+    <!-- Update Sustainability Form -->
+    <section>
+      <h2>Update Sustainability</h2>
+      <form id="updateSustainabilityForm">
+        <label for="updateBatchId">Batch ID:</label>
+        <input type="number" id="updateSustainabilityBatchId" required>
+        <label for="sustainable">Sustainable:</label>
+        <input type="checkbox" id="sustainable">
+        <button type="submit">Update Sustainability</button>
+      </form>
+      <div id="updateSustainabilityMessage"></div>
+    </section>
 
-  <!-- Fish Transfer Form -->
-  <h2>Transfer Fish</h2>
-  <form id="transferForm">
-    <label for="toAddress">To Address:</label>
-    <input type="text" id="toAddress" required><br>
-    <label for="amount">Amount:</label>
-    <input type="number" id="amount" required><br>
-    <button type="submit">Transfer Fish</button>
-  </form>
+    <!-- List Fish Form -->
+    <section>
+      <h2>List Fish</h2>
+      <form id="listFishForm">
+        <label for="listBatchId">Batch ID:</label>
+        <input type="number" id="listBatchId" required>
+        <label for="fishWeight">Weight:</label>
+        <input type="number" id="fishWeight" required>
+        <label for="fishPrice">Price per KG:</label>
+        <input type="number" id="fishPrice" required>
+        <button type="submit">List Fish</button>
+      </form>
+      <div id="listFishMessage"></div>
+    </section>
 
-  <!-- Fish Registration Form -->
-  <h2>Register Fish Batch</h2>
-  <form id="registerFishForm">
-    <label for="batchIdReg">Batch ID:</label>
-    <input type="number" id="batchIdReg" required><br>
-    <label for="fishType">Fish Type:</label>
-    <input type="text" id="fishType" required><br>
-    <button type="submit">Register Fish</button>
-  </form>
+    <!-- Buy Fish Form -->
+    <section>
+      <h2>Buy Fish</h2>
+      <form id="buyFishForm">
+        <label for="listingId">Listing ID:</label>
+        <input type="number" id="buyListingId" required>
+        <label for="buyWeight">Weight:</label>
+        <input type="number" id="buyWeight" required>
+        <label for="value">Value (in ETH):</label>
+        <input type="number" id="value" required>
+        <button type="submit">Buy Fish</button>
+      </form>
+      <div id="buyFishMessage"></div>
+    </section>
 
-  <!-- Inspector Authorization Form -->
-  <h2>Authorize Inspector</h2>
-  <form id="authorizeInspectorForm">
-    <label for="inspectorAddress">Inspector Address:</label>
-    <input type="text" id="inspectorAddress" required><br>
-    <button type="submit">Authorize</button>
-  </form>
+    <!-- Record Transfer Form -->
+    <section>
+      <h2>Record Transfer</h2>
+      <form id="recordTransferForm">
+        <label for="transferBatchId">Batch ID:</label>
+        <input type="number" id="transferBatchId" required>
+        <label for="stage">Stage:</label>
+        <input type="text" id="stage" required>
+        <button type="submit">Record Transfer</button>
+      </form>
+      <div id="recordTransferMessage"></div>
+    </section>
 
-  <!-- Price Registration Form -->
-  <h2>Register Price</h2>
-  <form id="registerPriceForm">
-    <label for="listingIdPrice">Listing ID:</label>
-    <input type="number" id="listingIdPrice" required><br>
-    <label for="price">Price:</label>
-    <input type="number" id="price" required><br>
-    <button type="submit">Register Price</button>
-  </form>
+    <!-- Adjust Price Form -->
+    <section>
+      <h2>Adjust Price</h2>
+      <form id="adjustPriceForm">
+        <label for="adjustListingId">Listing ID:</label>
+        <input type="number" id="adjustListingId" required>
+        <label for="sustainabilityFactor">Sustainability Factor:</label>
+        <input type="number" id="sustainabilityFactor" required>
+        <label for="freshnessFactor">Freshness Factor:</label>
+        <input type="number" id="freshnessFactor" required>
+        <button type="submit">Adjust Price</button>
+      </form>
+      <div id="adjustPriceMessage"></div>
+    </section>
 
-  <script src="app.js"></script>
+    <!-- Authorize Inspector Form -->
+    <section>
+      <h2>Authorize Inspector</h2>
+      <form id="authorizeInspectorForm">
+        <label for="inspectorAddress">Inspector Address:</label>
+        <input type="text" id="inspectorAddress" required>
+        <button type="submit">Authorize Inspector</button>
+      </form>
+      <div id="authorizeInspectorMessage"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
