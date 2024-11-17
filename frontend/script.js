@@ -18,7 +18,7 @@ document.getElementById("logCatchForm").addEventListener("submit", async (e) => 
     const weight = document.getElementById("weight").value;
     const pricePerKg = document.getElementById("pricePerKg").value;
     
-    const result = await makeApiRequest("http://localhost:8080/log-catch", "POST", {
+    const result = await makeApiRequest("http://localhost:8080/api/fisheries/log-catch", "POST", {
       weight,
       pricePerKg,
     });
