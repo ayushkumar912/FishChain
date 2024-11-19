@@ -21,7 +21,6 @@ router.post("/fisheries/logcatch", async (req, res) => {
     
     res.json({
       message: "Fish catch logged successfully",
-      batchId: event ? event.args?.batchId.toString() : null,
       txHash: tx.hash
     });
   } catch (error) {
@@ -31,21 +30,36 @@ router.post("/fisheries/logcatch", async (req, res) => {
 });
 
 
+
+
+
+
+
+
+
 router.get("/fisheries/batch/:batchId", async (req, res) => {
   try {
-    const batch = await contracts.fisheriesManagement.getBatch(
-      req.params.batchId
-    );
-    res.json({
-      weight: batch.weight.toString(),
-      pricePerKg: batch.pricePerKg.toString(),
-      sustainable: batch.sustainable,
-      fisher: batch.fisher,
-    });
+    const batchId = req.params.batchId; 
+    const batch = await contracts.fisheriesManagement.getFishBatch(batchId);
+
+    const parsedBatch = {
+      id: batch[0].toString(), 
+      fisher: batch[1],
+      weight: batch[2].toString(), 
+      pricePerKg: batch[3].toString(), 
+      isSold: batch[4],
+      inDispute: batch[5],
+      sustainable: batch[6],
+      transferIds: batch[7].map((id) => id.toString()) 
+    };
+
+    res.json(parsedBatch);
   } catch (error) {
+    console.error("Error fetching batch:", error);
     res.status(500).json({ message: `Error fetching batch: ${error.message}` });
   }
 });
+
 
 router.put("/fisheries/updateweight/:batchId", async (req, res) => {
   const { weight } = req.body;
@@ -68,6 +82,25 @@ router.put("/fisheries/updateweight/:batchId", async (req, res) => {
       .json({ message: `Error updating weight: ${error.message}` });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post("/marketplace/list", async (req, res) => {
   const { batchId, weight, pricePerKg } = req.body;
@@ -107,6 +140,26 @@ router.post("/marketplace/buy/:listingId", async (req, res) => {
     res.status(500).json({ message: `Error buying fish: ${error.message}` });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post("/transfer/record", async (req, res) => {
   const { batchId, stage } = req.body;

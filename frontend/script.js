@@ -14,26 +14,34 @@ async function makeApiRequest(url, method, body) {
   
 // Log Catch
 document.getElementById("logCatchForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const weight = document.getElementById("weight").value;
-    const pricePerKg = document.getElementById("pricePerKg").value;
-    
-    const result = await makeApiRequest("http://localhost:8080/api/fisheries/log-catch", "POST", {
-      weight,
-      pricePerKg,
-    });
-    
-    // Show the response message and transaction details
-    document.getElementById("logCatchMessage").textContent = result.message;
-    
-    // Optionally display the txHash and batchId
-    const txDetails = `
-      Transaction Hash: <a href="https://etherscan.io/tx/${result.txHash}" target="_blank">${result.txHash}</a><br>
-      Batch ID: ${result.batchId}
-    `;
-    
-    document.getElementById("logCatchMessage").innerHTML += txDetails;
+  e.preventDefault();
+  
+  // Convert the input values to numbers
+  const weight = parseFloat(document.getElementById("weight").value);
+  const pricePerKg = parseFloat(document.getElementById("pricePerKg").value);
+  
+  // Check if the values are valid numbers
+  if (isNaN(weight) || isNaN(pricePerKg)) {
+      alert("Please enter valid numbers for weight and price per kg.");
+      return;
+  }
+  
+  const result = await makeApiRequest("http://localhost:8080/api/fisheries/logcatch", "POST", {
+    weight,
+    pricePerKg,
+  });
+  
+  // Show the response message and transaction details
+  document.getElementById("logCatchMessage").textContent = result.message;
+  
+  // Optionally display the txHash and batchId
+  const txDetails = `
+    Transaction Hash: <a href="https://etherscan.io/tx/${result.txHash}" target="_blank">${result.txHash}</a><br>
+  `;
+  
+  document.getElementById("logCatchMessage").innerHTML += txDetails;
 });
+
   
 // Update Weight
 document.getElementById("updateWeightForm").addEventListener("submit", async (e) => {
@@ -68,7 +76,7 @@ document.getElementById("listFishForm").addEventListener("submit", async (e) => 
     const weight = document.getElementById("fishWeight").value;
     const pricePerKg = document.getElementById("fishPrice").value;
   
-    const result = await makeApiRequest("http://localhost:8080/list-fish", "POST", {
+    const result = await makeApiRequest("http://localhost:8080/api/marketplace/list", "POST", {
       batchId,
       weight,
       pricePerKg,

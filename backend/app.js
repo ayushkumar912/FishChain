@@ -12,7 +12,7 @@ app.use(cors({
   origin: "*",
 }));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 app.use("/api", routes);
 
