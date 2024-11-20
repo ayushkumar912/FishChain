@@ -66,8 +66,6 @@ router.post("/fisheries/logcatch", async (req, res) => {
     });
   }
 });
-
-
 router.post("/fisheries/updatesustainability", async (req, res) => {
   const { batchId, sustainable } = req.body;
 
@@ -90,8 +88,6 @@ router.post("/fisheries/updatesustainability", async (req, res) => {
     });
   }
 });
-
-
 router.get("/fisheries/batch/:batchId", async (req, res) => {
   try {
     const batchId = Number(req.params.batchId);
@@ -114,10 +110,6 @@ router.get("/fisheries/batch/:batchId", async (req, res) => {
     res.status(500).json({ message: `Error fetching batch: ${error.message}` });
   }
 });
-
-
-
-
 router.put("/fisheries/updateweight/:batchId", async (req, res) => {
   const { weight } = req.body;
   const batchId = Number(req.params.batchId);
@@ -142,6 +134,11 @@ router.put("/fisheries/updateweight/:batchId", async (req, res) => {
     });
   }
 });
+
+
+
+
+
 
 
 
@@ -190,7 +187,7 @@ router.post("/marketplace/buy/:listingId", async (req, res) => {
         value: ethers.parseEther(value.toString()),
       }
     );
-    await tx.wait();
+    // await tx.wait();
     res.json({ message: "Fish purchased successfully", txHash: tx.hash });
   } catch (error) {
     console.error("Error buying fish:", error);

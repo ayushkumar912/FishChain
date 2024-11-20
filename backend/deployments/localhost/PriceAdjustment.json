@@ -1,0 +1,202 @@
+{
+  "address": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "fishMarketplaceAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "initialPrice",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "adjustedPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "DebugPriceChange",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "batchId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newPricePerKg",
+          "type": "uint256"
+        }
+      ],
+      "name": "PriceAdjusted",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sustainabilityFactor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "freshnessFactor",
+          "type": "uint256"
+        }
+      ],
+      "name": "adjustPrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "freshnessMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "sustainabilityMultiplier",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x6c33db30bff774030d006afc3af8dcce0969533bb00ac1ed5310a9351420ca4a",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+    "transactionIndex": 0,
+    "gasUsed": "292348",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xc9a2fd7ff590360ed6d1327cf375d6205f84fe2a77cb70a6dbc1eff4248e593d",
+    "transactionHash": "0x6c33db30bff774030d006afc3af8dcce0969533bb00ac1ed5310a9351420ca4a",
+    "logs": [],
+    "blockNumber": 9,
+    "cumulativeGasUsed": "292348",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "7f70af04d44ccd1bf5c27b56c66c49af",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.27+commit.40a35a09\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"fishMarketplaceAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"initialPrice\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"adjustedPrice\",\"type\":\"uint256\"}],\"name\":\"DebugPriceChange\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"batchId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newPricePerKg\",\"type\":\"uint256\"}],\"name\":\"PriceAdjusted\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"sustainabilityFactor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"freshnessFactor\",\"type\":\"uint256\"}],\"name\":\"adjustPrice\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"freshnessMultiplier\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"sustainabilityMultiplier\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/PriceAdjustment.sol\":\"PriceAdjustment\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/FishMarketplace.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.27;\\n\\nimport {FisheriesManagement} from \\\"./FisheriesManagement.sol\\\";\\n\\ncontract FishMarketplace {\\n    FisheriesManagement fisheriesManagement;\\n    address public pricingAdjustmentContract;\\n\\n    struct Listing {\\n        uint256 listingId;\\n        uint256 batchId;\\n        address fisher;\\n        uint256 totalWeight;\\n        uint256 availableWeight;\\n        uint256 pricePerKg;\\n        bool isSoldOut;\\n    }\\n\\n    mapping(uint256 => Listing) public listings;\\n    uint256 public nextListingId = 1;\\n\\n    event FishListed(\\n        uint256 listingId,\\n        uint256 batchId,\\n        uint256 weight,\\n        uint256 pricePerKg\\n    );\\n    event FishBought(\\n        uint256 listingId,\\n        address buyer,\\n        uint256 weight,\\n        uint256 totalPrice\\n    );\\n    event PriceUpdated(uint256 listingId, uint256 newPricePerKg);\\n\\n    constructor(address fisheriesManagementAddress) {\\n        fisheriesManagement = FisheriesManagement(fisheriesManagementAddress);\\n    }\\n\\n    // modifier onlyPricingAdjustment() {\\n    //     require(msg.sender == pricingAdjustmentContract, \\\"Unauthorized: Only the PricingAdjustment contract can adjust prices\\\");\\n    //     _;\\n    // }\\n\\n    function setPricingAdjustmentContract(\\n        address _pricingAdjustmentContract\\n    ) external {\\n        require(\\n            pricingAdjustmentContract == address(0),\\n            \\\"Pricing adjustment contract already set\\\"\\n        );\\n        pricingAdjustmentContract = _pricingAdjustmentContract;\\n    }\\n\\n    function listFish(\\n        uint256 batchId,\\n        uint256 weight,\\n        uint256 pricePerKg\\n    ) public {\\n        require(\\n            fisheriesManagement.getBatchSustainability(batchId),\\n            \\\"Batch is not sustainable\\\"\\n        );\\n        fisheriesManagement.updateweight(batchId, weight);\\n        listings[nextListingId] = Listing(\\n            nextListingId,\\n            batchId,\\n            msg.sender,\\n            weight,\\n            weight,\\n            pricePerKg,\\n            false\\n        );\\n        emit FishListed(nextListingId, batchId, weight, pricePerKg);\\n        nextListingId++;\\n    }\\n\\n    function buyFish(uint256 listingId, uint256 weight) public payable {\\n        Listing storage listing = listings[listingId];\\n        require(!listing.isSoldOut, \\\"Listing is sold out\\\");\\n        require(\\n            weight <= listing.availableWeight,\\n            \\\"Not enough weight available\\\"\\n        );\\n\\n        uint256 totalPrice = weight * listing.pricePerKg;\\n        require(msg.value >= totalPrice, \\\"Insufficient funds\\\");\\n\\n        listing.availableWeight -= weight;\\n        if (listing.availableWeight == 0) {\\n            listing.isSoldOut = true;\\n        }\\n        payable(listing.fisher).transfer(totalPrice);\\n        emit FishBought(listingId, msg.sender, weight, totalPrice);\\n    }\\n\\n    // New function to allow only authorized contract to adjust prices\\n    function adjustListingPrice(\\n        uint256 listingId,\\n        uint256 newPricePerKg\\n    ) external {\\n        Listing storage listing = listings[listingId];\\n        listing.pricePerKg = newPricePerKg;\\n        emit PriceUpdated(listingId, newPricePerKg);\\n    }\\n\\n    // New getter function to access listing details\\n    function getListingDetails(\\n        uint256 listingId\\n    )\\n        external\\n        view\\n        returns (uint256, uint256, address, uint256, uint256, uint256, bool)\\n    {\\n        Listing storage listing = listings[listingId];\\n        return (\\n            listing.listingId,\\n            listing.batchId,\\n            listing.fisher,\\n            listing.totalWeight,\\n            listing.availableWeight,\\n            listing.pricePerKg,\\n            listing.isSoldOut\\n        );\\n    }\\n}\\n\",\"keccak256\":\"0x63401c8f9f84819fd6ab6af96047034a0184461bf81ae578a335094d07f634cf\",\"license\":\"MIT\"},\"contracts/FisheriesManagement.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.27;\\n\\ncontract FisheriesManagement {\\n    address public government;\\n    uint256 public nextBatchId = 1;\\n\\n    struct FishBatch {\\n        uint256 id;\\n        address fisher;\\n        uint256 weight;\\n        uint256 pricePerKg;\\n        bool isSold;\\n        bool inDispute;\\n        bool sustainable;\\n        uint256[] transferIds;\\n    }\\n\\n    mapping(uint256 => FishBatch) public batches;\\n\\n    event FishLogged(\\n        uint256 batchId,\\n        address fisher,\\n        uint256 weight,\\n        uint256 pricePerKg\\n    );\\n    event SustainabilityUpdated(uint256 batchId, bool sustainable);\\n    event DisputeRaised(uint256 batchId, string reason);\\n\\n    modifier onlyGovernment() {\\n        require(\\n            msg.sender == government,\\n            \\\"Only government can call this function\\\"\\n        );\\n        _;\\n    }\\n\\n    constructor() {\\n        government = msg.sender;\\n    }\\n\\n    function logCatch(uint256 weight, uint256 pricePerKg) public {\\n        batches[nextBatchId] = FishBatch(\\n            nextBatchId,\\n            msg.sender,\\n            weight,\\n            pricePerKg,\\n            false,\\n            false,\\n            false,\\n            new uint256[](0)\\n        );\\n        emit FishLogged(nextBatchId, msg.sender, weight, pricePerKg);\\n        nextBatchId++;\\n    }\\n\\n    function updateSustainability(\\n        uint256 batchId,\\n        bool sustainable\\n    ) public onlyGovernment {\\n        batches[batchId].sustainable = sustainable;\\n        emit SustainabilityUpdated(batchId, sustainable);\\n    }\\n\\n    function raiseDispute(\\n        uint256 batchId,\\n        string memory reason\\n    ) public onlyGovernment {\\n        batches[batchId].inDispute = true;\\n        emit DisputeRaised(batchId, reason);\\n    }\\n\\n\\n\\n\\nfunction getFishBatch(uint256 batchId)\\n    external\\n    view\\n    returns (\\n        uint256,\\n        address,\\n        uint256,\\n        uint256,\\n        bool,\\n        bool,\\n        bool,\\n        uint256[] memory\\n    )\\n{\\n    require(batches[batchId].id == batchId, \\\"Batch does not exist\\\");\\n    FishBatch memory batch = batches[batchId];\\n    return (\\n        batch.id,\\n        batch.fisher,\\n        batch.weight,\\n        batch.pricePerKg,\\n        batch.isSold,\\n        batch.inDispute,\\n        batch.sustainable,\\n        batch.transferIds\\n    );\\n}\\n\\n\\n\\n    function getBatchSustainability(\\n        uint256 batchId\\n    ) external view returns (bool) {\\n        return batches[batchId].sustainable;\\n    }\\n\\n    function getTransferIds(\\n        uint256 batchId\\n    ) external view returns (uint256[] memory) {\\n        require(batches[batchId].id == batchId, \\\"Batch does not exist\\\");\\n        return batches[batchId].transferIds;\\n    }\\n\\n    function addTransferToBatch(uint256 batchId, uint256 transferId) external {\\n        require(batches[batchId].id == batchId, \\\"Batch does not exist\\\");\\n        batches[batchId].transferIds.push(transferId);\\n    }\\n\\n    function updateweight(uint256 batchId, uint256 weight) external {\\n        require(batches[batchId].id == batchId, \\\"Batch does not exist\\\");\\n        batches[batchId].weight -= weight;\\n    }\\n}\\n\",\"keccak256\":\"0x501c532e526efbc07dc26ae127309be10639d0ab2d317bb702856373965dc586\",\"license\":\"MIT\"},\"contracts/PriceAdjustment.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.27;\\n\\nimport \\\"./FishMarketplace.sol\\\";\\n\\ncontract PriceAdjustment {\\n    mapping(uint256 => uint256) public sustainabilityMultiplier;\\n    mapping(uint256 => uint256) public freshnessMultiplier;\\n\\n    event PriceAdjusted(uint256 batchId, uint256 newPricePerKg);\\n    event DebugPriceChange(\\n        uint256 listingId,\\n        uint256 initialPrice,\\n        uint256 adjustedPrice\\n    );\\n\\n    FishMarketplace fishMarketplace;\\n\\n    constructor(address fishMarketplaceAddress) {\\n        fishMarketplace = FishMarketplace(fishMarketplaceAddress);\\n    }\\n\\n    function adjustPrice(\\n        uint256 listingId,\\n        uint256 sustainabilityFactor,\\n        uint256 freshnessFactor\\n    ) public {\\n        (uint256 id, , , , , uint256 pricePerKg, ) = fishMarketplace\\n            .getListingDetails(listingId);\\n\\n        require(id == listingId, \\\"Listing does not exist\\\");\\n\\n        uint256 initialPrice = pricePerKg;\\n        uint256 adjustedPrice = initialPrice;\\n\\n        // Apply sustainability and freshness multipliers\\n        if (sustainabilityFactor > 0) {\\n            adjustedPrice = (adjustedPrice * sustainabilityFactor) / 100;\\n        }\\n        if (freshnessFactor > 0) {\\n            adjustedPrice = (adjustedPrice * freshnessFactor) / 100;\\n        }\\n\\n        // Update price in marketplace\\n        fishMarketplace.adjustListingPrice(listingId, adjustedPrice);\\n\\n        emit DebugPriceChange(listingId, initialPrice, adjustedPrice);\\n        emit PriceAdjusted(listingId, adjustedPrice);\\n    }\\n}\\n\",\"keccak256\":\"0xf43f6a16304d57b48b6564e3a4d96984746fad2e268f19d3f74958f8b948c016\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060405161046f38038061046f833981016040819052602c916050565b600280546001600160a01b0319166001600160a01b0392909216919091179055607e565b600060208284031215606157600080fd5b81516001600160a01b0381168114607757600080fd5b9392505050565b6103e28061008d6000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806335b42c5e14610046578063bbf182961461005b578063d0e85a291461008d575b600080fd5b61005961005436600461029d565b6100ad565b005b61007b6100693660046102c9565b60006020819052908152604090205481565b60405190815260200160405180910390f35b61007b61009b3660046102c9565b60016020526000908152604090205481565b600254604051637d82ed1760e11b81526004810185905260009182916001600160a01b039091169063fb05da2e9060240160e060405180830381865afa1580156100fb573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061011f91906102e2565b5095505050505091508482146101745760405162461bcd60e51b8152602060048201526016602482015275131a5cdd1a5b99c8191bd95cc81b9bdd08195e1a5cdd60521b604482015260640160405180910390fd5b80808515610195576064610188878361035f565b610192919061038a565b90505b84156101b45760646101a7868361035f565b6101b1919061038a565b90505b6002546040516330a9040d60e21b815260048101899052602481018390526001600160a01b039091169063c2a4103490604401600060405180830381600087803b15801561020157600080fd5b505af1158015610215573d6000803e3d6000fd5b5050604080518a8152602081018690529081018490527f9b8c0b82ec76fba9005f370f70f693233efbbe485ceaf1bbf2b8810b4cfc02ae9250606001905060405180910390a160408051888152602081018390527f433cdc262329cacb342553b87c0c326f44770ce13559357cfd1fdd7384abf20f910160405180910390a150505050505050565b6000806000606084860312156102b257600080fd5b505081359360208301359350604090920135919050565b6000602082840312156102db57600080fd5b5035919050565b600080600080600080600060e0888a0312156102fd57600080fd5b8751602089015160408a015191985096506001600160a01b038116811461032357600080fd5b606089015160808a015160a08b015160c08c015193985091965094509250801515811461034f57600080fd5b8091505092959891949750929550565b808202811582820484141761038457634e487b7160e01b600052601160045260246000fd5b92915050565b6000826103a757634e487b7160e01b600052601260045260246000fd5b50049056fea2646970667358221220277c62c69a4114c3cb471a0670cfd74c4da6cb48c071ec39951ec21ec0e4e14f64736f6c634300081b0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806335b42c5e14610046578063bbf182961461005b578063d0e85a291461008d575b600080fd5b61005961005436600461029d565b6100ad565b005b61007b6100693660046102c9565b60006020819052908152604090205481565b60405190815260200160405180910390f35b61007b61009b3660046102c9565b60016020526000908152604090205481565b600254604051637d82ed1760e11b81526004810185905260009182916001600160a01b039091169063fb05da2e9060240160e060405180830381865afa1580156100fb573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061011f91906102e2565b5095505050505091508482146101745760405162461bcd60e51b8152602060048201526016602482015275131a5cdd1a5b99c8191bd95cc81b9bdd08195e1a5cdd60521b604482015260640160405180910390fd5b80808515610195576064610188878361035f565b610192919061038a565b90505b84156101b45760646101a7868361035f565b6101b1919061038a565b90505b6002546040516330a9040d60e21b815260048101899052602481018390526001600160a01b039091169063c2a4103490604401600060405180830381600087803b15801561020157600080fd5b505af1158015610215573d6000803e3d6000fd5b5050604080518a8152602081018690529081018490527f9b8c0b82ec76fba9005f370f70f693233efbbe485ceaf1bbf2b8810b4cfc02ae9250606001905060405180910390a160408051888152602081018390527f433cdc262329cacb342553b87c0c326f44770ce13559357cfd1fdd7384abf20f910160405180910390a150505050505050565b6000806000606084860312156102b257600080fd5b505081359360208301359350604090920135919050565b6000602082840312156102db57600080fd5b5035919050565b600080600080600080600060e0888a0312156102fd57600080fd5b8751602089015160408a015191985096506001600160a01b038116811461032357600080fd5b606089015160808a015160a08b015160c08c015193985091965094509250801515811461034f57600080fd5b8091505092959891949750929550565b808202811582820484141761038457634e487b7160e01b600052601160045260246000fd5b92915050565b6000826103a757634e487b7160e01b600052601260045260246000fd5b50049056fea2646970667358221220277c62c69a4114c3cb471a0670cfd74c4da6cb48c071ec39951ec21ec0e4e14f64736f6c634300081b0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 758,
+        "contract": "contracts/PriceAdjustment.sol:PriceAdjustment",
+        "label": "sustainabilityMultiplier",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_uint256)"
+      },
+      {
+        "astId": 762,
+        "contract": "contracts/PriceAdjustment.sol:PriceAdjustment",
+        "label": "freshnessMultiplier",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_uint256,t_uint256)"
+      },
+      {
+        "astId": 779,
+        "contract": "contracts/PriceAdjustment.sol:PriceAdjustment",
+        "label": "fishMarketplace",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_contract(FishMarketplace)289"
+      }
+    ],
+    "types": {
+      "t_contract(FishMarketplace)289": {
+        "encoding": "inplace",
+        "label": "contract FishMarketplace",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_uint256,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

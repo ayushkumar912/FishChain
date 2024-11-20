@@ -1,0 +1,165 @@
+{
+  "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "inspector",
+          "type": "address"
+        }
+      ],
+      "name": "InspectorAuthorized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "inspector",
+          "type": "address"
+        }
+      ],
+      "name": "InspectorRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "inspector",
+          "type": "address"
+        }
+      ],
+      "name": "authorizeInspector",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "authorizedInspectors",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "government",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "inspector",
+          "type": "address"
+        }
+      ],
+      "name": "revokeInspector",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x539d3b11e363d9c2c1e86a3722346c87766cf4dca3b148433eff1b716ec99479",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+    "transactionIndex": 0,
+    "gasUsed": "217850",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xa28274c7dbcbd41403e9016f5ac041203e87e883b0493b35b18d81a9769fcc65",
+    "transactionHash": "0x539d3b11e363d9c2c1e86a3722346c87766cf4dca3b148433eff1b716ec99479",
+    "logs": [],
+    "blockNumber": 8,
+    "cumulativeGasUsed": "217850",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "7f70af04d44ccd1bf5c27b56c66c49af",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.27+commit.40a35a09\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"inspector\",\"type\":\"address\"}],\"name\":\"InspectorAuthorized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"inspector\",\"type\":\"address\"}],\"name\":\"InspectorRevoked\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"inspector\",\"type\":\"address\"}],\"name\":\"authorizeInspector\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"authorizedInspectors\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"government\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"inspector\",\"type\":\"address\"}],\"name\":\"revokeInspector\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/InspectorAuthorization.sol\":\"InspectorAuthorization\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/InspectorAuthorization.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.27;\\n\\ncontract InspectorAuthorization {\\n    address public government;\\n    mapping(address => bool) public authorizedInspectors;\\n\\n    event InspectorAuthorized(address inspector);\\n    event InspectorRevoked(address inspector);\\n\\n    modifier onlyGovernment() {\\n        require(\\n            msg.sender == government,\\n            \\\"Only government can call this function\\\"\\n        );\\n        _;\\n    }\\n\\n    constructor() {\\n        government = msg.sender;\\n    }\\n\\n    function authorizeInspector(address inspector) public onlyGovernment {\\n        authorizedInspectors[inspector] = true;\\n        emit InspectorAuthorized(inspector);\\n    }\\n\\n    function revokeInspector(address inspector) public onlyGovernment {\\n        authorizedInspectors[inspector] = false;\\n        emit InspectorRevoked(inspector);\\n    }\\n}\\n\",\"keccak256\":\"0x344dd0041d204627ec1e5a79f56ce66db21da234142a26566daded87fb5ffa21\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50600080546001600160a01b03191633179055610292806100316000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80632672f5261461005157806342f28cd2146100815780637c3d571e14610096578063f267964c146100a9575b600080fd5b600054610064906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b61009461008f3660046101e6565b6100dc565b005b6100946100a43660046101e6565b610167565b6100cc6100b73660046101e6565b60016020526000908152604090205460ff1681565b6040519015158152602001610078565b6000546001600160a01b0316331461010f5760405162461bcd60e51b815260040161010690610216565b60405180910390fd5b6001600160a01b038116600081815260016020908152604091829020805460ff1916905590519182527f7636083d2db706a6c1953ddaf9b3d158d178a077090641f9b790859d0860d1e691015b60405180910390a150565b6000546001600160a01b031633146101915760405162461bcd60e51b815260040161010690610216565b6001600160a01b038116600081815260016020818152604092839020805460ff191690921790915590519182527fcd96265f3ebff658ab48c4d3018fad3bf231116291603d3e15e6904472e3c86f910161015c565b6000602082840312156101f857600080fd5b81356001600160a01b038116811461020f57600080fd5b9392505050565b60208082526026908201527f4f6e6c7920676f7665726e6d656e742063616e2063616c6c20746869732066756040820152653731ba34b7b760d11b60608201526080019056fea2646970667358221220548b01e26a7762e4b76522d562c03d7690fd267df3ba0f7a72d276500ba0808764736f6c634300081b0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80632672f5261461005157806342f28cd2146100815780637c3d571e14610096578063f267964c146100a9575b600080fd5b600054610064906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b61009461008f3660046101e6565b6100dc565b005b6100946100a43660046101e6565b610167565b6100cc6100b73660046101e6565b60016020526000908152604090205460ff1681565b6040519015158152602001610078565b6000546001600160a01b0316331461010f5760405162461bcd60e51b815260040161010690610216565b60405180910390fd5b6001600160a01b038116600081815260016020908152604091829020805460ff1916905590519182527f7636083d2db706a6c1953ddaf9b3d158d178a077090641f9b790859d0860d1e691015b60405180910390a150565b6000546001600160a01b031633146101915760405162461bcd60e51b815260040161010690610216565b6001600160a01b038116600081815260016020818152604092839020805460ff191690921790915590519182527fcd96265f3ebff658ab48c4d3018fad3bf231116291603d3e15e6904472e3c86f910161015c565b6000602082840312156101f857600080fd5b81356001600160a01b038116811461020f57600080fd5b9392505050565b60208082526026908201527f4f6e6c7920676f7665726e6d656e742063616e2063616c6c20746869732066756040820152653731ba34b7b760d11b60608201526080019056fea2646970667358221220548b01e26a7762e4b76522d562c03d7690fd267df3ba0f7a72d276500ba0808764736f6c634300081b0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 681,
+        "contract": "contracts/InspectorAuthorization.sol:InspectorAuthorization",
+        "label": "government",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 685,
+        "contract": "contracts/InspectorAuthorization.sol:InspectorAuthorization",
+        "label": "authorizedInspectors",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_bool)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      }
+    }
+  }
+}
