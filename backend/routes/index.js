@@ -94,7 +94,7 @@ router.post("/fisheries/updatesustainability", async (req, res) => {
 
 router.get("/fisheries/batch/:batchId", async (req, res) => {
   try {
-    const batchId = req.params.batchId; 
+    const batchId = Number(req.params.batchId);
     const batch = await contracts.fisheriesManagement.getFishBatch(batchId);
 
     const parsedBatch = {

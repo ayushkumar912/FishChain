@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use("/api", routes);
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Internal server error" });
 });
@@ -24,7 +24,7 @@ app.use((err, req, res, next) => {
 // Start server with error handling
 const server = app
   .listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Server running on http://localhost:${port}/api`);
   })
   .on("error", (error) => {
     console.error("Error starting server:", error);
