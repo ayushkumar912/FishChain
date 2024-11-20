@@ -36,51 +36,34 @@ const createContractWrapper = (contract, contractName) => {
     throw new Error('Contract and contract name are required for wrapper creation');
   }
 
-  console.log(`Creating wrapper for ${contractName}...`);
-  console.log('Contract interface:', contract.interface ? 'exists' : 'missing');
-  
   const wrapper = {};
   
-  try {
-    // Get function signatures from the ABI instead of interface
-    const functions = contract.interface.fragments.filter(f => f.type === 'function');
+  const functions = contract.interface.fragments.filter(f => f.type === 'function');
+  
+  for (const func of functions) {
+    const functionName = func.name;
     
-    console.log(`Found ${functions.length} functions for ${contractName}`);
-    
-    for (const func of functions) {
-      const functionName = func.name;
-      console.log(`Creating wrapper for function: ${functionName}`);
-      
-      wrapper[functionName] = async (...args) => {
-        try {
-          const tx = await contract[functionName](...args);
-          
-          // Handle both transaction responses and direct returns
-          if (tx && tx.wait && typeof tx.wait === 'function') {
-            const receipt = await tx.wait();
-            await logTransaction(tx, receipt, contractName, functionName);
-            return { tx, receipt };
-          } else {
-            // For view/pure functions that don't create transactions
-            return tx;
-          }
-        } catch (error) {
-          console.error(`Error in ${contractName}#${functionName}:`, error);
-          throw error;
+    wrapper[functionName] = async (...args) => {
+      try {
+        const tx = await contract[functionName](...args);
+        
+        // Check if it's a transaction or a view/pure function
+        if (tx && typeof tx.wait === 'function') {
+          const receipt = await tx.wait();
+          await logTransaction(tx, receipt, contractName, functionName);
+          return { tx, receipt };
+        } else {
+          // For view/pure functions that return a value
+          return tx;
         }
-      };
-    }
-    
-    return wrapper;
-  } catch (error) {
-    console.error(`Error creating wrapper for ${contractName}:`, error);
-    console.error('Contract details:', {
-      address: contract.address,
-      hasInterface: !!contract.interface,
-      hasFunctions: contract.interface ? !!contract.interface.fragments : false
-    });
-    throw error;
+      } catch (error) {
+        console.error(`Error in ${contractName}#${functionName}:`, error);
+        throw error;
+      }
+    };
   }
+  
+  return wrapper;
 };
 
 // Set up provider and wallet

@@ -30,11 +30,9 @@ document.getElementById("logCatchForm").addEventListener("submit", async (e) => 
     weight,
     pricePerKg,
   });
-  
-  // Show the response message and transaction details
+
   document.getElementById("logCatchMessage").textContent = result.message;
-  
-  // Optionally display the txHash and batchId
+
   const txDetails = `
     Transaction Hash: <a href="https://etherscan.io/tx/${result.txHash}" target="_blank">${result.txHash}</a><br>
   `;
@@ -132,7 +130,7 @@ document.getElementById("authorizeInspectorForm").addEventListener("submit", asy
     e.preventDefault();
     const inspectorAddress = document.getElementById("inspectorAddress").value;
   
-    const result = await makeApiRequest("http://localhost:8080/authorize-inspector", "POST", {
+    const result = await makeApiRequest("http://localhost:8080/api//inspector/authorize", "POST", {
       inspectorAddress,
     });
     document.getElementById("authorizeInspectorMessage").textContent = result.message;

@@ -12,8 +12,7 @@ app.use(cors({
   origin: "*",
 }));
 
-app.use(bodyParser.json({limit: '50mb'}));
-
+app.use(bodyParser.json());
 app.use("/api", routes);
 
 // Error handling middleware

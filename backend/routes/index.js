@@ -11,30 +11,85 @@ const validateAddress = (req, res, next) => {
   next();
 };
 
+async function checkSyncStatus() {
+  const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545');
+  const syncStatus = await provider.send('eth_syncing');
+  console.log(syncStatus);
+}
+
+checkSyncStatus();
+
+async function trackBlockNumber() {
+  const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545');
+  let currentBlock = await provider.getBlockNumber();
+  console.log(`Current Block Number: ${currentBlock}`);
+
+  // Continuously track, but with a delay
+  setInterval(async () => {
+    const newBlock = await provider.getBlockNumber();
+    if (newBlock !== currentBlock) {
+      currentBlock = newBlock;
+      console.log(`New Block: ${currentBlock}`);
+    }
+  }, 10000); // Poll every 10 seconds
+}
+
+trackBlockNumber();
+
+
 router.post("/fisheries/logcatch", async (req, res) => {
-  const { weight, pricePerKg } = req.body;
+  console.log("Received request for /fisheries/logcatch");
+  let { weight, pricePerKg } = req.body;
+  weight = Number(weight);
+  pricePerKg = Number(pricePerKg);
+
+  if (isNaN(weight) || weight <= 0) {
+    return res.status(400).json({ message: "Invalid weight. Must be a positive integer." });
+  }
+
+  if (isNaN(pricePerKg) || pricePerKg <= 0) {
+    return res.status(400).json({ message: "Invalid pricePerKg. Must be a positive integer." });
+  }
+
   try {
-    const { tx, receipt } = await contracts.fisheriesManagement.logCatch(weight, pricePerKg);
-    const event = receipt.logs?.find(log => 
-      log.topics[0] === contracts.fisheriesManagement.interface.getEventTopic('FishLogged')
-    );
+    const result = await contracts.fisheriesManagement.logCatch(weight, pricePerKg);
     
     res.json({
       message: "Fish catch logged successfully",
-      txHash: tx.hash
+      txHash: result.tx.hash
     });
+
   } catch (error) {
     console.error("Error logging catch:", error);
-    res.status(500).json({ message: `Error logging catch: ${error.message}` });
+    res.status(500).json({ 
+      message: error.message || "Error logging catch" 
+    });
   }
 });
 
 
+router.post("/fisheries/updatesustainability", async (req, res) => {
+  const { batchId, sustainable } = req.body;
 
+  try {
+    const result = await contracts.fisheriesManagement.updateSustainability(
+      batchId,
+      sustainable
+    );
 
-
-
-
+    res.json({
+      message: "Sustainability updated successfully",
+      batchId,
+      sustainable,
+      txHash: result.tx.hash
+    });
+  } catch (error) {
+    console.error("Error updating sustainability:", error);
+    res.status(500).json({ 
+      message: error.message || "Error updating sustainability" 
+    });
+  }
+});
 
 
 router.get("/fisheries/batch/:batchId", async (req, res) => {
@@ -61,65 +116,67 @@ router.get("/fisheries/batch/:batchId", async (req, res) => {
 });
 
 
+
+
 router.put("/fisheries/updateweight/:batchId", async (req, res) => {
   const { weight } = req.body;
+  const batchId = Number(req.params.batchId);
+
+  if (isNaN(weight) || weight <= 0) {
+    return res.status(400).json({ message: "Invalid weight" });
+  }
+
   try {
-    const tx = await contracts.fisheriesManagement.updateWeight(
-      req.params.batchId,
-      weight
-    );
-    await tx.wait();
+    const result = await contracts.fisheriesManagement.updateweight(batchId, weight);
+    
     res.json({
       message: "Weight updated successfully",
-      batchId: req.params.batchId,
+      batchId: batchId,
       newWeight: weight,
-      txHash: tx.hash,
+      txHash: result.tx.hash
     });
   } catch (error) {
     console.error("Error updating weight:", error);
-    res
-      .status(500)
-      .json({ message: `Error updating weight: ${error.message}` });
+    res.status(500).json({ 
+      message: error.message || "Error updating weight" 
+    });
   }
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.post("/marketplace/list", async (req, res) => {
   const { batchId, weight, pricePerKg } = req.body;
+
+  if (isNaN(batchId) || batchId < 0) {
+    return res.status(400).json({ message: "Invalid batch ID" });
+  }
+
+  if (isNaN(weight) || weight < 0) {
+    return res.status(400).json({ message: "Invalid weight" });
+  }
+
+  if (isNaN(pricePerKg) || pricePerKg < 0) {
+    return res.status(400).json({ message: "Invalid price per kg" });
+  }
+
   try {
-    const tx = await contracts.fishMarketplace.listFish(
+    const result = await contracts.fishMarketplace.listFish(
       batchId,
       weight,
       pricePerKg
     );
-    const receipt = await tx.wait();
-    const event = receipt.events?.find((e) => e.event === "FishListed");
+
     res.json({
       message: "Fish listed successfully",
-      listingId: event?.args?.listingId.toString(),
-      txHash: tx.hash,
+      listingId: result.tx.hash, // Adjust this based on how you want to track listing ID
+      txHash: result.tx.hash
     });
   } catch (error) {
     console.error("Error listing fish:", error);
-    res.status(500).json({ message: `Error listing fish: ${error.message}` });
+    res.status(500).json({ 
+      message: error.message || "Error listing fish" 
+    });
   }
 });
 
