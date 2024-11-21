@@ -1,8 +1,0 @@
-deploy the contract manually for error resolution 
-use hardhat console
-
-for console:
- npx hardhat console --network localhost
-
-  const FisheriesManagement = await ethers.getContractFactory("FisheriesManagement");
-  console.log(FisheriesManagement);
