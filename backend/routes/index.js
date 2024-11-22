@@ -142,6 +142,9 @@ router.put("/fisheries/updateweight/:batchId", async (req, res) => {
 
 
 
+
+
+
 router.post("/marketplace/list", async (req, res) => {
   const { batchId, weight, pricePerKg } = req.body;
 
@@ -176,6 +179,40 @@ router.post("/marketplace/list", async (req, res) => {
     });
   }
 });
+
+
+router.get("/marketplace/listing/:listingId", async (req, res) => {
+  try {
+    const listingId = Number(req.params.listingId); // Extract listingId from the request params
+    const listing = await contracts.fishMarketplace.getListingDetails(listingId); // Call the contract function
+
+    // Parse the returned listing data
+    const parsedListing = {
+      listingId: listing[0].toString(),
+      batchId: listing[1].toString(),
+      fisher: listing[2],
+      totalWeight: listing[3].toString(),
+      availableWeight: listing[4].toString(),
+      pricePerKg: listing[5].toString(),
+      isSoldOut: listing[6],
+    };
+
+    // Respond with the parsed listing details as JSON
+    res.json(parsedListing);
+  } catch (error) {
+    console.error("Error fetching listing details:", error); // Log the error
+    res.status(500).json({ message: `Error fetching listing details: ${error.message}` }); // Return an error response
+  }
+});
+
+
+
+
+
+
+
+
+
 
 router.post("/marketplace/buy/:listingId", async (req, res) => {
   const { weight, value } = req.body;
